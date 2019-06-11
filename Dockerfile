@@ -18,6 +18,7 @@ FROM build AS publish
 RUN dotnet publish "App.CheckIn.Subscribe.Web.csproj" -c Release -o /app
 
 FROM base AS final
+RUN apt-get install -y ca-certificates
 WORKDIR /app
 COPY --from=publish /app .
 ENTRYPOINT ["dotnet", "App.CheckIn.Subscribe.Web.dll"]
