@@ -1,0 +1,14 @@
+{
+    "culture": "pt-BR",
+    "texts": {
+        "MissingEmail": "Inscrição deve informar email",
+        "InvalidEmail": "Email '{0}' não é válido",
+        "MissingEventCode": "Inscrição deve fornecer o código do evento",
+        "MissingEventName": "Inscrição deve fornecer o nome do evento",
+        "MissingEventDescription": "Inscrição deve fornecer o descrição do evento",
+        "MissingEventStartTime": "Inscrição deve fornecer a data de início do evento",
+        "MissingEventDuration": "Inscrição deve fornecer a duração do evento",
+        "MissingEventRoom": "Inscrição deve fornecer a sala do evento",
+        "MissingNotificationToken": "Inscrição deve fornecer o token de notificação"
+    }
+}
