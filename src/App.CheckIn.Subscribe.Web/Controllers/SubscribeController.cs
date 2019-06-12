@@ -12,17 +12,17 @@ namespace AppCheckInSubscribe.Controllers.Web
     /// <summary>
     /// Controller responsible for handling request of the subscription route
     /// </summary>
-    [Route("api/subscription")]
+    [Route("api/subscribe")]
     [Produces("application/json")]
     [TnfAuthorize(Permission = Permissions.Subscription, Description = Permissions.SubscriptionDescription)]
     [ApiController]
-    public class SubscriptionController : TnfController
+    public class SubscribeController : TnfController
     {
         private readonly ISubscriptionService _subscriptionService;
         private readonly IEventSubscriptionRepository _repository;
         private readonly ITnfSession _session;
 
-        public SubscriptionController(
+        public SubscribeController(
             ISubscriptionService subscriptionService,
             IEventSubscriptionRepository repository,
             ITnfSession session)
