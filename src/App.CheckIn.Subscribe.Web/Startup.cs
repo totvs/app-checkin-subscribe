@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Converters;
 using Swashbuckle.AspNetCore.Swagger;
 using Tnf.Configuration;
 
@@ -28,6 +29,10 @@ namespace AppCheckInSubscribe.Web
         {
             services
                 .AddMvc()
+                .AddJsonOptions(jsonOptions =>
+                {
+                    jsonOptions.SerializerSettings.Converters.Add(new StringEnumConverter());
+                })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             services.AddTnfAspNetCore();
@@ -39,7 +44,7 @@ namespace AppCheckInSubscribe.Web
                 .AddSwaggerGen(c =>
                 {
                     c.SwaggerDoc("v1", new Info { Title = "Event Subscription API", Version = "v1" });
-                    c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "AppCheckInSubscribe.xml"));
+                    c.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, "App.CheckIn.Subscribe.Web.xml"));
                     c.DescribeAllEnumsAsStrings();
 
                     c.AddSecurityDefinition("Bearer", new ApiKeyScheme

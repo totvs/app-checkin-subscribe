@@ -1,4 +1,5 @@
 ﻿using System;
+using App.CheckIn.Domain;
 
 namespace AppCheckInSubscribe.Application.DTOs
 {
@@ -38,6 +39,11 @@ namespace AppCheckInSubscribe.Application.DTOs
         /// Room of the Event
         /// </summary>
         public string EventRoom { get; set; }
+
+        /// <summary>
+        /// Indicates which Notification Service should be used to send notifications
+        /// </summary>
+        public NotificationServiceType NotificationService { get; set; }
 
         /// <summary>
         /// Informs whether or not the user wants to receive notifications of the event

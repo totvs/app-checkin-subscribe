@@ -57,6 +57,7 @@ namespace AppCheckInSubscribe.Application
                 subscriptionRequest.EventDescription,
                 subscriptionRequest.EventRoom,
                 subscriptionRequest.EnablePushNotification,
+                subscriptionRequest.NotificationService,
                 subscriptionRequest.NotificationToken);
 
             eventSubscription = await _subscriptionRepository.InsertAsync(eventSubscription);

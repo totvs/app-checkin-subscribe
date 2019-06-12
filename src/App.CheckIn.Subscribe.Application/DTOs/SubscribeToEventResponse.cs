@@ -50,6 +50,11 @@ namespace AppCheckInSubscribe.Application.DTOs
         /// </summary>
         public bool EnablePushNotification { get; set; }
 
+        /// <summary>
+        /// Indicates which Notification Service should be used to send notifications
+        /// </summary>
+        public NotificationServiceType NotificationService { get; set; }
+
         public SubscribeToEventResponse(EventSubscription subscription)
         {
             Id = subscription.Id;
@@ -61,6 +66,7 @@ namespace AppCheckInSubscribe.Application.DTOs
             EventStartTime = subscription.EventStartTime;
             EventDuration = subscription.EventDuration;
             EnablePushNotification = subscription.EnablePushNotification;
+            NotificationService = subscription.NotificationService;
         }
     }
 }
