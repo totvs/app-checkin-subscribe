@@ -35,6 +35,9 @@ namespace AppCheckInSubscribe.Web
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
+            services.AddHealthChecks()
+                .AddDbContextCheck<AppCheckInDbContext>();
+
             services.AddTnfAspNetCore();
             services.AddTnfAspNetCoreSecurity(Configuration);
             services.AddApplication(_databaseConfiguration);
@@ -70,6 +73,8 @@ namespace AppCheckInSubscribe.Web
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseHealthChecks("/health_check");
 
             app.UseTnfAspNetCore(configuration =>
             {
