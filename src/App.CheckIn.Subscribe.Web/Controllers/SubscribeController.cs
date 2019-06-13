@@ -78,5 +78,30 @@ namespace AppCheckInSubscribe.Controllers.Web
 
             return CreateResponseOnPost(subscription);
         }
+
+        /// <summary>
+        /// Deletes a subscriptions for the logged user
+        /// </summary>
+        /// <param name="eventCode">The event code of the subscription</param>
+        [HttpDelete("{eventCode}")]
+        [ProducesResponseType(typeof(ErrorResponse), 400)]
+        public async Task<IActionResult> DeleteAsync([FromRoute] string eventCode)
+        {
+            if (!_session.UserId.HasValue)
+            {
+                return BadRequest();
+            }
+
+            var userId = _session.UserId.GetValueOrDefault();
+
+            if (!await _subscriptionService.IsSubscribedAsync(userId, eventCode))
+            {
+                return NotFound();
+            }
+
+            await _subscriptionService.DeleteSubscriptionAsync(userId, eventCode);
+
+            return CreateResponseOnDelete();
+        }
     }
 }

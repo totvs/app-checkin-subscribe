@@ -65,6 +65,31 @@ namespace AppCheckInSubscribe.Application
             return new SubscribeToEventResponse(eventSubscription);
         }
 
+        /// <summary>
+        /// Checks is the user is subscribed to a given event
+        /// </summary>
+        /// <param name="userId">The user Id</param>
+        /// <param name="eventCode">the event code</param>
+        /// <returns>A boolean indicating whether or not the user is subscribed to the event</returns>
+        public Task<bool> IsSubscribedAsync(long userId, string eventCode)
+        {
+            return _subscriptionRepository.HasSubscriptionAsync(userId, eventCode);
+        }
+
+        /// <summary>
+        /// Deletes the user subscriptions from the given event
+        /// </summary>
+        /// <param name="userId">The user</param>
+        /// <param name="eventCode">The event code</param>
+        public async Task DeleteSubscriptionAsync(long userId, string eventCode)
+        {
+            var subscription = await _subscriptionRepository.GetSubscriptionAsync(userId, eventCode);
+            if (subscription != null)
+            {
+                await _subscriptionRepository.DeleteAsync(subscription);
+            }
+        }
+
         private bool IsValidSubscription(SubscribeToEventRequest subscription)
         {
             if (subscription.Email.IsNullOrWhiteSpace())
